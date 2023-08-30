@@ -22,9 +22,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDTO> findAll() {
-        List<Employee> employees = employeeRepository.findAll();
         List<EmployeeDTO> employeeDTOS = new ArrayList<>();
-        for (Employee employee : employees) {
+        for (Employee employee : employeeRepository.findAll()) {
             employeeDTOS.add(employeeMapper.toEmployeeDTO(employee));
         }
         return employeeDTOS;
@@ -34,5 +33,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void save(Employee employee) {
         employeeRepository.save(employee);
+    }
+
+    @Transactional
+    @Override
+    public void delete(long id){
+        employeeRepository.deleteById(id);
     }
 }

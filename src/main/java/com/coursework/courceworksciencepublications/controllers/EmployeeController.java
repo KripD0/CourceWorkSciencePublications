@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +45,7 @@ public class EmployeeController {
                     """)
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createEmployee(Employee employee){
+    public void createEmployee(Employee employee) {
         employeeService.save(employee);
     }
 
@@ -54,8 +55,18 @@ public class EmployeeController {
                     """)
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateEmployee(@PathVariable("id") long id, Employee employee){
+    public void updateEmployee(@PathVariable("id") long id, Employee employee) {
         employee.setId(id);
         employeeService.save(employee);
+    }
+
+    @Operation(summary = "Удаление сотрудника",
+            description = """
+                    Этот метод контроллера принимает id сотрудника и возвращает код ответа 200.
+                    """)
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteEmployee(@PathVariable("id") long id) {
+        employeeService.delete(id);
     }
 }
