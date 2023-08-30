@@ -1,6 +1,7 @@
 package com.coursework.courceworksciencepublications.model.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,9 +32,11 @@ public class Employee {
 
     private String scientificDegree;
 
-    @OneToMany(mappedBy = "employee")
+
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
     private List<Scientific> scientifics;
 
-    @ManyToMany(mappedBy = "employees")
+
+    @ManyToMany(mappedBy = "employees", fetch = FetchType.LAZY)
     private Set<Institution> institutions;
 }

@@ -1,31 +1,36 @@
 package com.coursework.courceworksciencepublications.service.impl;
 
-import com.coursework.courceworksciencepublications.exceptions.EmployeeNotFoundException;
+import com.coursework.courceworksciencepublications.mappers.EmployeeMapper;
+import com.coursework.courceworksciencepublications.model.dto.EmployeeDTO;
 import com.coursework.courceworksciencepublications.model.entity.Employee;
 import com.coursework.courceworksciencepublications.repository.EmployeeRepository;
 import com.coursework.courceworksciencepublications.service.interfaces.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final EmployeeMapper employeeMapper;
 
     @Override
-    public List<Employee> findAll() {
-        return employeeRepository.findAll();
+    public List<EmployeeDTO> findAll() {
+        List<Employee> employees = employeeRepository.findAll();
+        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+        for (Employee employee : employees) {
+            employeeDTOS.add(employeeMapper.toEmployeeDTO(employee));
+        }
+        return employeeDTOS;
     }
 
-    @Override
-    public Employee findById(long id) {
-        return employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + id + " not found."));
-    }
-
+    @Transactional
     @Override
     public void save(Employee employee) {
         employeeRepository.save(employee);

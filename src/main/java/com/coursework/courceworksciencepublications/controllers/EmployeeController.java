@@ -1,5 +1,6 @@
 package com.coursework.courceworksciencepublications.controllers;
 
+import com.coursework.courceworksciencepublications.model.dto.EmployeeDTO;
 import com.coursework.courceworksciencepublications.model.entity.Employee;
 import com.coursework.courceworksciencepublications.service.interfaces.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,18 +34,8 @@ public class EmployeeController {
                     """)
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Employee> getAllEmployers() {
+    public List<EmployeeDTO> getAllEmployers() {
         return employeeService.findAll();
-    }
-
-    @Operation(summary = "Получение сотрудника по id",
-            description = """
-                    Этот метод контроллера принимает id в url и возвращает сотрудника.
-                    """)
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Employee getEmployeeById(@PathVariable("id") long id) {
-        return employeeService.findById(id);
     }
 
     @Operation(summary = "Создание сотрудника",
