@@ -3,11 +3,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/scientificsystem
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: postgres
+    password: ${PASSWORD}
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
+
 springdoc:
   swagger-ui:
     enabled: true
