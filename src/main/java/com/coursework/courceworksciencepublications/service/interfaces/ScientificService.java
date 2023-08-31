@@ -7,4 +7,6 @@ public interface ScientificService {
     List<ScientificDTO> findAll();
 
     void delete(long id);
+
+    void save(ScientificDTO scientificDTO);
 }

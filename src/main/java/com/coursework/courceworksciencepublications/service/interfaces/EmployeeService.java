@@ -9,7 +9,7 @@ public interface EmployeeService {
 
     List<EmployeeDTO> findAll();
 
-    void save(Employee employee);
+    void save(EmployeeDTO employeeDTO);
 
     void delete(long id);
 }

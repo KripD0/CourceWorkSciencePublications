@@ -8,4 +8,6 @@ import org.mapstruct.Mapper;
 public interface ScienceMapper {
 
     ScientificDTO toScienceDTO(Scientific scientific);
+
+    Scientific toScientific(ScientificDTO scientificDTO);
 }

@@ -8,4 +8,6 @@ import org.mapstruct.Mapper;
 public interface EmployeeMapper {
 
     EmployeeDTO toEmployeeDTO(Employee employee);
+
+    Employee toEmployee(EmployeeDTO employeeDTO);
 }

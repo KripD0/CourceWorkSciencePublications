@@ -1,7 +1,6 @@
 package com.coursework.courceworksciencepublications.controllers;
 
 import com.coursework.courceworksciencepublications.model.dto.EmployeeDTO;
-import com.coursework.courceworksciencepublications.model.entity.Employee;
 import com.coursework.courceworksciencepublications.service.interfaces.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,21 +42,21 @@ public class EmployeeController {
             description = """
                     Этот метод контроллера принимает сотрудника и возвращает код ответа 201.
                     """)
-    @PostMapping
+    @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createEmployee(Employee employee) {
-        employeeService.save(employee);
+    public void createEmployee(EmployeeDTO employeeDTO) {
+        employeeService.save(employeeDTO);
     }
 
     @Operation(summary = "Обновление сотрудника",
             description = """
                     Этот метод контроллера принимает сотрудника и возвращает код ответа 200.
                     """)
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateEmployee(@PathVariable("id") long id, Employee employee) {
-        employee.setId(id);
-        employeeService.save(employee);
+    public void updateEmployee(@PathVariable("id") long id, EmployeeDTO employeeDTO) {
+        employeeDTO.setId(id);
+        employeeService.save(employeeDTO);
     }
 
     @Operation(summary = "Удаление сотрудника",

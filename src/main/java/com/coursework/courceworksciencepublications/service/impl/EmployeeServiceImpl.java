@@ -31,8 +31,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Transactional
     @Override
-    public void save(Employee employee) {
-        employeeRepository.save(employee);
+    public void save(EmployeeDTO employeeDTO) {
+        employeeRepository.save(employeeMapper.toEmployee(employeeDTO));
     }
 
     @Transactional
