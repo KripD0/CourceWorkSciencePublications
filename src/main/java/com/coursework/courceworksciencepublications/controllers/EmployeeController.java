@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "Контроллер для работы с таблицей employee.",
+@Tag(name = "Controller for wor with table employee.",
         description = """
-                Контроллер выполняет CRUD операции с сущностью employee.
+                Controller doing CRUD operations with entity employee.
                 """)
 @RestController
 @RequiredArgsConstructor
@@ -28,9 +28,9 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @Operation(summary = "Получение всех сотрудников",
+    @Operation(summary = "Get All employees",
             description = """
-                    Этот метод контроллера ничего не принимает и возвращает всех сотрудников.
+                    This controller method get nothing return all employees.
                     """)
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -38,9 +38,9 @@ public class EmployeeController {
         return employeeService.findAll();
     }
 
-    @Operation(summary = "Создание сотрудника",
+    @Operation(summary = "Create employee",
             description = """
-                    Этот метод контроллера принимает сотрудника и возвращает код ответа 201.
+                    This controller method get employee, return HTTP code 201.
                     """)
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
@@ -48,9 +48,9 @@ public class EmployeeController {
         employeeService.save(employeeDTO);
     }
 
-    @Operation(summary = "Обновление сотрудника",
+    @Operation(summary = "Update employee",
             description = """
-                    Этот метод контроллера принимает сотрудника и возвращает код ответа 200.
+                    This controller method get employee, return HTTP code 200.
                     """)
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -59,9 +59,9 @@ public class EmployeeController {
         employeeService.save(employeeDTO);
     }
 
-    @Operation(summary = "Удаление сотрудника",
+    @Operation(summary = "Delete employee",
             description = """
-                    Этот метод контроллера принимает id сотрудника и возвращает код ответа 200.
+                    This controller method get id employee, return HTTP code 200.
                     """)
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
